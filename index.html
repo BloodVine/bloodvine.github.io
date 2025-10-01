@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aurora — Creative Web Studio</title>
+  <meta name="description" content="Aurora — modern responsive website template with theme switcher, portfolio, pricing, FAQ and contact form.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0f1728;
+      --muted:#9aa4b2;
+      --accent:linear-gradient(90deg,#7b61ff,#2bd0ff);
+      --primary:#7b61ff;
+      --radius:14px;
+    }
+    html.light{ --bg:#f7fbff; --card:#fff; --muted:#5b6774; --primary:#4f46e5; }
+
+    body{
+      margin:0;min-height:100vh;
+      background:var(--bg);
+      color:#e6eef6;
+      font-family:"Inter",sans-serif;
+      -webkit-font-smoothing:antialiased;
+      padding:32px 20px;
+      display:flex;justify-content:center;
+      transition:background 0.3s ease;
+    }
+    .wrap{width:100%;max-width:1200px}
+
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+    nav{display:flex;gap:12px}
+    .btn{padding:8px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.2);color:inherit}
+    .primary{background:var(--accent);color:white}
+
+    .hero{padding:30px;border-radius:var(--radius);background:var(--card);margin-bottom:24px}
+    h1,h2,h3{margin:0 0 12px 0}
+
+    /* background changer panel */
+    .bg-changer{margin:20px 0;padding:15px;background:var(--card);border-radius:var(--radius)}
+    .bg-changer input{padding:10px;border-radius:6px;border:1px solid #ccc;width:120px;text-align:center}
+    .bg-changer button{margin-left:10px}
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- HEADER -->
+    <header>
+      <h2>Aurora</h2>
+      <nav>
+        <button id="themeToggle" class="ghost">Toggle Theme</button>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Welcome to Aurora 🌌</h1>
+      <p>We design and build beautiful, fast, accessible websites.</p>
+    </section>
+
+    <!-- BACKGROUND CHANGER -->
+    <section class="bg-changer">
+      <h3>🎨 Change Background Color</h3>
+      <input type="text" id="colorInput" placeholder="#3498db">
+      <button class="btn primary" onclick="changeColor()">Apply</button>
+      <p class="muted" style="margin-top:6px">Enter any valid HEX color (e.g. <code>#ff0000</code>)</p>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+      <h3>Portfolio</h3>
+      <p class="muted">Some of our selected projects.</p>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+      <h3>Pricing</h3>
+      <p class="muted">Simple plans for everyone.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h3>FAQ</h3>
+      <p class="muted">Answers to common questions.</p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h3>Contact</h3>
+      <p class="muted">Get in touch with us today.</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="margin-top:20px;color:var(--muted)">
+      © <span id="year"></span> Aurora
+    </footer>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Theme toggle
+    const root = document.documentElement;
+    const themeToggle = document.getElementById("themeToggle");
+    themeToggle.addEventListener("click", ()=>{
+      root.classList.toggle("light");
+    });
+
+    // Background changer
+    function changeColor(){
+      const input = document.getElementById("colorInput").value;
+      if(/^#([0-9A-F]{3}){1,2}$/i.test(input)){
+        document.body.style.background = input;
+      } else {
+        alert("❌ Please enter a valid HEX color (e.g. #ff0000)");
+      }
+    }
+  </script>
+</body>
+</html>
