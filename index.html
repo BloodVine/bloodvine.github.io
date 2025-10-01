@@ -3,9 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Aurora — Creative Web Studio</title>
-  <meta name="description" content="Aurora — modern responsive website template with theme switcher, portfolio, pricing, FAQ and contact form.">
+  <title>Aurora — My Portfolio</title>
+  <meta name="description" content="Personal portfolio site built with Aurora template.">
+  <!-- ✅ Favicon / Site Tab Icon -->
+  <link rel="icon" type="image/png" href="profile-pic.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#0f1724;
@@ -34,15 +37,28 @@
     .btn{padding:8px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
     .ghost{background:transparent;border:1px solid rgba(255,255,255,0.2);color:inherit}
     .primary{background:var(--accent);color:white}
-
-    .hero{padding:30px;border-radius:var(--radius);background:var(--card);margin-bottom:24px}
     h1,h2,h3{margin:0 0 12px 0}
-
-    /* background changer panel */
-    .bg-changer{margin:20px 0;padding:15px;background:var(--card);border-radius:var(--radius)}
-    .bg-changer input{padding:10px;border-radius:6px;border:1px solid #ccc;width:120px;text-align:center}
-    .bg-changer button{margin-left:10px}
     .muted{color:var(--muted)}
+
+    .section{margin:40px 0;padding:30px;border-radius:var(--radius);background:var(--card)}
+
+    /* Profile + About Me */
+    .profile{display:flex;align-items:center;gap:20px}
+    .profile img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid var(--primary)}
+
+    /* Portfolio Grid */
+    .grid{display:grid;gap:20px}
+    .grid-3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+    .card{background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:0 5px 20px rgba(0,0,0,0.15)}
+
+    /* FAQ */
+    details{margin-bottom:10px;background:var(--card);padding:15px;border-radius:var(--radius)}
+    summary{cursor:pointer;font-weight:600}
+
+    /* Contact Form */
+    form{display:flex;flex-direction:column;gap:12px}
+    input,textarea{padding:10px;border-radius:8px;border:1px solid #ccc}
+    textarea{min-height:100px}
   </style>
 </head>
 <body>
@@ -56,47 +72,97 @@
     </header>
 
     <!-- HERO -->
-    <section class="hero">
-      <h1>Welcome to Aurora 🌌</h1>
-      <p>We design and build beautiful, fast, accessible websites.</p>
+    <section class="section">
+      <h1>Welcome to My Portfolio 🌌</h1>
+      <p>Designer, developer & creator of beautiful web experiences.</p>
     </section>
 
     <!-- BACKGROUND CHANGER -->
-    <section class="bg-changer">
+    <section class="section">
       <h3>🎨 Change Background Color</h3>
       <input type="text" id="colorInput" placeholder="#3498db">
       <button class="btn primary" onclick="changeColor()">Apply</button>
-      <p class="muted" style="margin-top:6px">Enter any valid HEX color (e.g. <code>#ff0000</code>)</p>
+      <p class="muted" style="margin-top:6px">Enter a HEX color (e.g. #ff0000)</p>
+    </section>
+
+    <!-- ABOUT ME -->
+    <section class="section">
+      <h2>👤 About Me</h2>
+      <div class="profile">
+        <img src="profile-pic.png" alt="Profile picture">
+        <p>Hi! I’m [Your Name], a passionate developer and designer who loves crafting elegant, functional, and user-friendly websites. 🚀</p>
+      </div>
     </section>
 
     <!-- PORTFOLIO -->
-    <section id="portfolio">
-      <h3>Portfolio</h3>
-      <p class="muted">Some of our selected projects.</p>
+    <section class="section" id="portfolio">
+      <h2>💼 Portfolio</h2>
+      <div class="grid grid-3">
+        <div class="card">Project 1</div>
+        <div class="card">Project 2</div>
+        <div class="card">Project 3</div>
+      </div>
     </section>
 
     <!-- PRICING -->
-    <section id="pricing">
-      <h3>Pricing</h3>
-      <p class="muted">Simple plans for everyone.</p>
+    <section class="section" id="pricing">
+      <h2>💰 Pricing</h2>
+      <div class="grid grid-3">
+        <div class="card">Basic Plan</div>
+        <div class="card">Pro Plan</div>
+        <div class="card">Enterprise</div>
+      </div>
     </section>
 
     <!-- FAQ -->
-    <section id="faq">
-      <h3>FAQ</h3>
-      <p class="muted">Answers to common questions.</p>
+    <section class="section" id="faq">
+      <h2>❓ FAQ</h2>
+      <details><summary>What do you do?</summary><p>I build modern web applications.</p></details>
+      <details><summary>Do you freelance?</summary><p>Yes, I take on select freelance projects.</p></details>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section" id="testimonials">
+      <h2>⭐ Testimonials</h2>
+      <div class="grid grid-3">
+        <div class="card">"Amazing work!"</div>
+        <div class="card">"Highly recommend!"</div>
+        <div class="card">"Fast & reliable."</div>
+      </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact">
-      <h3>Contact</h3>
-      <p class="muted">Get in touch with us today.</p>
+    <section class="section" id="contact">
+      <h2>📬 Contact</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message"></textarea>
+        <button class="btn primary">Send</button>
+      </form>
     </section>
 
     <!-- FOOTER -->
     <footer style="margin-top:20px;color:var(--muted)">
-      © <span id="year"></span> Aurora
+      © <span id="year"></span> Your Name | Aurora Template
     </footer>
+
+    <!-- 🔲 OPTIONAL SECTIONS OUTLINE (uncomment to add)
+    <section class="section" id="blog">
+      <h2>📝 Blog</h2>
+      <p class="muted">Coming soon...</p>
+    </section>
+
+    <section class="section" id="services">
+      <h2>🛠 Services</h2>
+      <p class="muted">What I offer.</p>
+    </section>
+
+    <section class="section" id="gallery">
+      <h2>📸 Gallery</h2>
+      <p class="muted">Photo showcase.</p>
+    </section>
+    -->
   </div>
 
   <script>
@@ -105,8 +171,7 @@
 
     // Theme toggle
     const root = document.documentElement;
-    const themeToggle = document.getElementById("themeToggle");
-    themeToggle.addEventListener("click", ()=>{
+    document.getElementById("themeToggle").addEventListener("click", ()=>{
       root.classList.toggle("light");
     });
 
