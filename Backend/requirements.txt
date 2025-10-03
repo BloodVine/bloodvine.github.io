@@ -1,0 +1,9 @@
+Flask==2.3.3
+Flask-CORS==4.0.0
+Flask-JWT-Extended==4.5.3
+Flast-SocketIO==5.3.6
+puthon-socketio==5.8.0
+cryptography==41.0.7
+python-dotenv==1.0.0
+email-validator==2.1.0
+Wekzeug==2.3.7
