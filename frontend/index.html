@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complex App - Home</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>ComplexApp</h2>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="/" class="nav-link active">Home</a>
+                <a href="pages/dashboard.html" class="nav-link">Dashboard</a>
+                <a href="pages/chat.html" class="nav-link">Chat</a>
+                <a href="pages/contact.html" class="nav-link">Contact</a>
+                <div class="nav-auth" id="navAuth">
+                    <a href="pages/login.html" class="nav-link">Login</a>
+                    <a href="pages/register.html" class="nav-link nav-button">Sign Up</a>
+                </div>
+                <div class="nav-user" id="navUser" style="display: none;">
+                    <span id="userName"></span>
+                    <button onclick="logout()" class="nav-link nav-button">Logout</button>
+                </div>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to Complex App</h1>
+                <p>A sophisticated web application with real-time features, encryption, and modern UI</p>
+                <div class="hero-buttons">
+                    <a href="pages/register.html" class="btn btn-primary">Get Started</a>
+                    <a href="pages/dashboard.html" class="btn btn-secondary">Explore Features</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-code fa-10x"></i>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt fa-3x"></i>
+                        <h3>Secure Encryption</h3>
+                        <p>All your data is encrypted using advanced cryptography algorithms</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-comments fa-3x"></i>
+                        <h3>Real-time Chat</h3>
+                        <p>Chat with other users in real-time with WebSocket technology</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-blog fa-3x"></i>
+                        <h3>Blog System</h3>
+                        <p>Create and share posts with our advanced blogging system</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt fa-3x"></i>
+                        <h3>Responsive Design</h3>
+                        <p>Works perfectly on all devices - desktop, tablet, and mobile</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Complex App. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

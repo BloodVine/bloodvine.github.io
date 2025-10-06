@@ -1,0 +1,6 @@
+
+### Backend Files
+
+#### `backend/__init__.py`
+```python
+# This file makes the backend directory a Python package
