@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NeonNight — Chat</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="dark">
+  <header class="site-header">
+    <div class="brand">
+      <img src="assets/images/logo.png" alt="logo" class="logo"/>
+      <h1>NeonNight</h1>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="chat.html">Chat</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="chat-main">
+    <aside class="chat-side">
+      <div id="user-info" class="user-info">
+        <div id="avatar" class="avatar"></div>
+        <div>
+          <div id="displayName">Guest</div>
+          <div id="emailSmall"></div>
+        </div>
+      </div>
+      <button id="btnSignOut" class="btn small">Sign Out</button>
+    </aside>
+
+    <section class="chat-area">
+      <div id="messages" class="messages"></div>
+      <form id="messageForm" class="message-form">
+        <input id="messageInput" type="text" placeholder="Say something..." autocomplete="off"/>
+        <button type="submit" class="btn">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Connected with Firebase</p>
+  </footer>
+
+  <script src="assets/js/env.example.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/chat.js"></script>
+</body>
+</html>

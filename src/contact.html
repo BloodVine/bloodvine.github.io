@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NeonNight — Contact</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="dark">
+  <header class="site-header small">
+    <div class="brand">
+      <img src="assets/images/logo.png" alt="logo" class="logo"/>
+      <h1>NeonNight</h1>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="chat.html">Chat</a>
+    </nav>
+  </header>
+
+  <main class="contact-main">
+    <section class="contact-card">
+      <h2>Contact Us</h2>
+      <form id="contactForm">
+        <label>Name<input id="name" required /></label>
+        <label>Email<input id="email" type="email" required /></label>
+        <label>Message<textarea id="message" rows="5" required></textarea></label>
+        <button class="btn" type="submit">Send Message</button>
+      </form>
+      <div id="contactStatus" class="status"></div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="assets/js/env.example.js"></script>
+  <script src="assets/js/contact.js"></script>
+  <script>
+    // init EmailJS with your user id (env will supply it)
+    emailjs.init(ENV.EMAILJS_USER_ID);
+  </script>
+</body>
+</html>

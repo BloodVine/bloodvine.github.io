@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NeonNight — Dashboard</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="dark">
+  <header class="site-header">
+    <div class="brand">
+      <img src="assets/images/logo.png" alt="logo" class="logo"/>
+      <h1>NeonNight</h1>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="chat.html">Chat</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="dashboard">
+    <h2>Your Dashboard</h2>
+    <div id="dashContent">Loading...</div>
+  </main>
+
+  <script src="assets/js/env.example.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    // Simple placeholder: later logic will customize per-user
+    firebase.auth().onAuthStateChanged(user => {
+      const el = document.getElementById('dashContent');
+      if (!user) {
+        el.innerHTML = '<p>Please <a href="login.html">log in</a> to see your dashboard.</p>';
+      } else {
+        el.innerHTML = `<p>Welcome back, <strong>${user.displayName || user.email}</strong>! Your uid: ${user.uid}</p>`;
+      }
+    });
+  </script>
+</body>
+</html>

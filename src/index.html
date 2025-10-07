@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NeonNight — Home</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/images/favicon.png" />
+</head>
+<body class="dark">
+  <header class="site-header">
+    <div class="brand">
+      <img src="assets/images/logo.png" alt="logo" class="logo"/>
+      <h1>NeonNight</h1>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="chat.html">Chat</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="contact.html">Contact</a>
+      <a href="register.html" class="btn">Sign Up</a>
+      <a href="login.html" class="btn alt">Log In</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <div class="hero-inner">
+      <h2>Dark Anime · Gaming Aesthetic</h2>
+      <p>Join the realm. Chat, play, and connect with fellow night gamers.</p>
+      <div class="hero-actions">
+        <a class="cta" href="chat.html">Enter Chat</a>
+        <a class="cta alt" href="register.html">Create Account</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="assets/images/anime-hero.jpg" alt="anime" />
+    </div>
+  </main>
+
+  <section class="features">
+    <div class="card">
+      <h3>Real-time Chat</h3>
+      <p>Powered by Firebase for low-latency conversation.</p>
+    </div>
+    <div class="card">
+      <h3>Secure Accounts</h3>
+      <p>Optional Python JWT backend to issue tokens and control sessions.</p>
+    </div>
+    <div class="card">
+      <h3>Contact & Support</h3>
+      <p>EmailJS integration so you can receive form messages instantly.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> NeonNight — Designed in dark anime style</p>
+  </footer>
+
+  <script src="assets/js/env.example.js"></script> <!-- during CI this will be env.js -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>document.getElementById('year').innerText = new Date().getFullYear();</script>
+</body>
+</html>

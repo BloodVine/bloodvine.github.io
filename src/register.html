@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NeonNight — Register</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="dark auth-page">
+  <main class="auth-card">
+    <h2>Create Account</h2>
+    <form id="registerForm">
+      <label>
+        Display name
+        <input id="displayName" required />
+      </label>
+      <label>
+        Email
+        <input id="email" type="email" required />
+      </label>
+      <label>
+        Password
+        <input id="password" type="password" required minlength="6" />
+      </label>
+      <button class="btn" type="submit">Sign Up</button>
+      <p class="small">Already have an account? <a href="login.html">Log in</a></p>
+    </form>
+    <div id="status" class="status"></div>
+  </main>
+
+  <script src="assets/js/env.example.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>
