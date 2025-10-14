@@ -29,11 +29,16 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
   <script src="assets/js/app.js"></script>
   <script>
-    // Simple placeholder: later logic will customize per-user
+    // Check locally if the user is signed in
     firebase.auth().onAuthStateChanged(user => {
       const el = document.getElementById('dashContent');
       if (!user) {
-        el.innerHTML = '<p>Please <a href="login.html">log in</a> to see your dashboard.</p>';
+        el.innerHTML = `
+          <p>
+            Please <a href="login.html">Login</a> to continue in this page.<br>
+            If you think this is a mistake please <a href="contact.html">contact us</a>.
+          </p>
+        `;
       } else {
         el.innerHTML = `<p>Welcome back, <strong>${user.displayName || user.email}</strong>! Your uid: ${user.uid}</p>`;
       }
