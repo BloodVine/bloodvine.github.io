@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BloodVine — Images</title>
+  <link rel="stylesheet" href="/src/assets/css/style.css" />
+  <style>
+    body {
+      background: url('/src/assets/images/picture.webp') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      margin: 0;
+      color: #fff;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      padding: 2rem;
+      background: rgba(0,0,0,0.6);
+      border-radius: 1rem;
+      margin: 2rem auto;
+      max-width: 1200px;
+    }
+    .gallery img {
+      max-width: 300px;
+      max-height: 300px;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+      background: #222;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 2rem;
+      text-shadow: 0 2px 8px #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Image Gallery</h1>
+  <div class="gallery">
+    <img src="/src/assets/images/picture.webp" alt="Main Background" title="Main Background" />
+    <img src="/src/assets/images/logo.png" alt="Logo" title="Logo" />
+    <img src="/src/assets/images/anime-hero.jpg" alt="Anime Hero" title="Anime Hero" />
+    <img src="/src/assets/images/favicon.png" alt="Favicon" title="Favicon" />
+    <!-- Add more images as needed -->
+  </div>
+</body>
+</html>
