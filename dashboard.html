@@ -35,12 +35,18 @@
       if (!user) {
         el.innerHTML = `
           <p>
-            Please <a href="login.html">Login</a> to continue in this page.<br>
+            Please <a href="login.html" class="btn alt">Login</a> to continue in this page.<br>
             If you think this is a mistake please <a href="contact.html">contact us</a>.
           </p>
+          <div>
+            <a href="register.html" class="btn">Sign Up</a>
+            <a href="login.html" class="btn alt">Log In</a>
+          </div>
         `;
       } else {
-        el.innerHTML = `<p>Welcome back, <strong>${user.displayName || user.email}</strong>! Your uid: ${user.uid}</p>`;
+        el.innerHTML = `
+          <p>Welcome back, <strong>${user.displayName || user.email}</strong>! Your uid: ${user.uid}</p>
+        `;
       }
     });
   </script>
