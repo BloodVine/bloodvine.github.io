@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Projects Browser</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #project-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .project-item {
+      background: #fff;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .project-item:hover {
+      background-color: #e0e0e0;
+    }
+
+    #project-view {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #back-btn {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #back-btn:hover {
+      background-color: #0056b3;
+    }
+
+    pre {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+
+    /* Basic syntax highlighting styles */
+    .keyword { color: #66d9ef; }
+    .string { color: #e6db74; }
+    .comment { color: #75715e; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<h1>My Projects</h1>
+
+<div id="project-list"></div>
+
+<div id="project-view">
+  <button id="back-btn">Back to Projects</button>
+  <h2 id="project-title"></h2>
+  <pre><code id="project-code"></code></pre>
+</div>
+
+<script>
+  // List your project files and their raw URLs
+  const projects = [
+    {
+      name: "program1.py",
+      url: "https://raw.githubusercontent.com/yourusername/yourrepo/main/projects/program1.py",
+      language: "python"
+    },
+    {
+      name: "program2.cs",
+      url: "https://raw.githubusercontent.com/yourusername/yourrepo/main/projects/program2.cs",
+      language: "csharp"
+    }
+  ];
+
+  const projectListDiv = document.getElementById('project-list');
+  const projectViewDiv = document.getElementById('project-view');
+  const projectTitle = document.getElementById('project-title');
+  const projectCode = document.getElementById('project-code');
+  const backBtn = document.getElementById('back-btn');
+
+  // Render list of projects
+  function renderProjectList() {
+    projects.forEach((proj, index) => {
+      const div = document.createElement('div');
+      div.className = 'project-item';
+      div.textContent = proj.name;
+      div.onclick = () => showProject(index);
+      projectListDiv.appendChild(div);
+    });
+  }
+
+  // Show project code
+  function showProject(index) {
+    const proj = projects[index];
+    projectTitle.textContent = proj.name;
+    // fetch the code file
+    fetch(proj.url)
+      .then(response => response.text())
+      .then(text => {
+        projectCode.innerHTML = syntaxHighlight(text, proj.language);
+      });
+    document.getElementById('project-list').style.display = 'none';
+    document.getElementById('project-view').style.display = 'block';
+  }
+
+  backBtn.onclick = () => {
+    document.getElementById('project-list').style.display = 'block';
+    document.getElementById('project-view').style.display = 'none';
+  };
+
+  // Basic syntax highlighter function (same as previous)
+  function syntaxHighlight(code, language) {
+    let escaped = code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    if (language === 'python') {
+      escaped = escaped.replace(/\b(def|return|print|import|from|as|if|else|elif|for|while|in|with|try|except)\b/g, '<span class="keyword">$1</span>');
+      escaped = escaped.replace(/(".*?"|'.*?')/g, '<span class="string">$1</span>');
+      escaped = escaped.replace(/#.*$/gm, '<span class="comment">$&</span>');
+    } else if (language === 'csharp') {
+      escaped = escaped.replace(/\b(using|class|static|void|Console|namespace|public|private|protected|internal|new|return|if|else|for|while|switch|case|break|continue)\b/g, '<span class="keyword">$&</span>');
+      escaped = escaped.replace(/(".*?"|'.*?')/g, '<span class="string">$1</span>');
+      escaped = escaped.replace(/\/\/.*$/gm, '<span class="comment">$&</span>');
+    }
+    // Add more languages if needed
+    return escaped;
+  }
+
+  renderProjectList();
+</script>
+
+</body>
+</html>
