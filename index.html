@@ -1,154 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My test Projects Browser</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background-color: #f0f0f0;
-    }
-
-    h1 {
-      text-align: center;
-    }
-
-    #project-list {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .project-item {
-      background: #fff;
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .project-item:hover {
-      background-color: #e0e0e0;
-    }
-
-    #project-view {
-      display: none;
-      margin-top: 20px;
-    }
-
-    #back-btn {
-      margin-top: 10px;
-      padding: 8px 12px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    #back-btn:hover {
-      background-color: #0056b3;
-    }
-
-    pre {
-      background: #272822;
-      color: #f8f8f2;
-      padding: 15px;
-      border-radius: 4px;
-      overflow-x: auto;
-    }
-
-    /* Basic syntax highlighting styles */
-    .keyword { color: #66d9ef; }
-    .string { color: #e6db74; }
-    .comment { color: #75715e; font-style: italic; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lukew96 - Portal</title>
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Blood<span>Vine</span></div>
+        <nav>
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="chat.html">Chat</a></li>
+                <li><a href="prices.html">Prices</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button id="loginBtn" class="auth-btn">Login</button>
+            <button id="signupBtn" class="auth-btn">Sign Up</button>
+        </div>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
 
-<h1>My Projects</h1>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Enter the World of <span>Dark Anime</span></h1>
+            <p>Discover the most intense and captivating dark anime series. From psychological thrillers to supernatural horrors, explore stories that challenge your perception of reality.</p>
+            <button class="cta-button">Explore Now</button>
+        </div>
+    </section>
 
-<div id="project-list"></div>
+    <!-- Popular Anime Section -->
+    <section class="section">
+        <div class="section-title">
+            <h2>Popular Anime</h2>
+        </div>
+        <div class="anime-grid">
+            <div class="anime-card">
+                <img src="https://images.unsplash.com/photo-1578632749014-ca77efd052eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Anime 1">
+                <div class="anime-card-content">
+                    <h3>Tokyo Ghoul</h3>
+                    <p>A college student becomes a half-ghoul after a chance encounter with one of these flesh-eating creatures.</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i> 8.2/10
+                    </div>
+                </div>
+            </div>
+            <div class="anime-card">
+                <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Anime 2">
+                <div class="anime-card-content">
+                    <h3>Death Note</h3>
+                    <p>A high school student discovers a supernatural notebook that allows him to kill anyone by writing the victim's name.</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i> 9.0/10
+                    </div>
+                </div>
+            </div>
+            <div class="anime-card">
+                <img src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Anime 3">
+                <div class="anime-card-content">
+                    <h3>Attack on Titan</h3>
+                    <p>In a world where humanity lives inside cities surrounded by enormous walls due to the Titans, gigantic humanoid creatures.</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i> 8.9/10
+                    </div>
+                </div>
+            </div>
+            <div class="anime-card">
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Anime 4">
+                <div class="anime-card-content">
+                    <h3>Parasyte</h3>
+                    <p>A high school student is infected by an alien parasite that takes over his right hand and must fight off other parasites.</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i> 8.3/10
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div id="project-view">
-  <button id="back-btn">Back to Projects</button>
-  <h2 id="project-title"></h2>
-  <pre><code id="project-code"></code></pre>
-</div>
+    <!-- Footer --> 
+    <footer> 
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="#">All Anime</a></li>
+                    <li><a href="#">Recently Added</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="forums.html">Forums</a></li>
+                    <li><a href="#">Discord Server (Under construction)</a></li>
+                    <li><a href="events.html">Events</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                    <li><a href="tos.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect With Us</h3>
+                <p>Stay updated with the latest dark anime news and releases.</p>
+                <div class="social-icons">
+                    <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/@BloodVineCC"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 BloodVine. All rights reserved. | Portal</p>
+        </div>
+    </footer>
 
-<script>
-  // List your project files and their raw URLs
-  const projects = [
-    {
-      name: "program1.py",
-      url: "https://raw.githubusercontent.com/yourusername/yourrepo/main/projects/program1.py",
-      language: "python"
-    },
-    {
-      name: "program2.cs",
-      url: "https://raw.githubusercontent.com/yourusername/yourrepo/main/projects/program2.cs",
-      language: "csharp"
-    }
-  ];
-
-  const projectListDiv = document.getElementById('project-list');
-  const projectViewDiv = document.getElementById('project-view');
-  const projectTitle = document.getElementById('project-title');
-  const projectCode = document.getElementById('project-code');
-  const backBtn = document.getElementById('back-btn');
-
-  // Render list of projects
-  function renderProjectList() {
-    projects.forEach((proj, index) => {
-      const div = document.createElement('div');
-      div.className = 'project-item';
-      div.textContent = proj.name;
-      div.onclick = () => showProject(index);
-      projectListDiv.appendChild(div);
-    });
-  }
-
-  // Show project code
-  function showProject(index) {
-    const proj = projects[index];
-    projectTitle.textContent = proj.name;
-    // fetch the code file
-    fetch(proj.url)
-      .then(response => response.text())
-      .then(text => {
-        projectCode.innerHTML = syntaxHighlight(text, proj.language);
-      });
-    document.getElementById('project-list').style.display = 'none';
-    document.getElementById('project-view').style.display = 'block';
-  }
-
-  backBtn.onclick = () => {
-    document.getElementById('project-list').style.display = 'block';
-    document.getElementById('project-view').style.display = 'none';
-  };
-
-  // Basic syntax highlighter function (same as previous)
-  function syntaxHighlight(code, language) {
-    let escaped = code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-    if (language === 'python') {
-      escaped = escaped.replace(/\b(def|return|print|import|from|as|if|else|elif|for|while|in|with|try|except)\b/g, '<span class="keyword">$1</span>');
-      escaped = escaped.replace(/(".*?"|'.*?')/g, '<span class="string">$1</span>');
-      escaped = escaped.replace(/#.*$/gm, '<span class="comment">$&</span>');
-    } else if (language === 'csharp') {
-      escaped = escaped.replace(/\b(using|class|static|void|Console|namespace|public|private|protected|internal|new|return|if|else|for|while|switch|case|break|continue)\b/g, '<span class="keyword">$&</span>');
-      escaped = escaped.replace(/(".*?"|'.*?')/g, '<span class="string">$1</span>');
-      escaped = escaped.replace(/\/\/.*$/gm, '<span class="comment">$&</span>');
-    }
-    // Add more languages if needed
-    return escaped;
-  }
-
-  renderProjectList();
-</script>
-
+    <script src="main.js"></script>
 </body>
 </html>
+

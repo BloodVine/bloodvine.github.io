@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact Us - BloodVine</title>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+  // Initialize EmailJS with your public key
+  (function() {
+    emailjs.init("kUBZAGfCosCDHAvRT"); // Make sure this is correct
+  })();
+  
+  // Function to handle form submission
+  function sendEmail(event) {
+    event.preventDefault();
+    
+    const form = document.getElementById('contact-form');
+    const statusMessage = document.getElementById('status-message');
+    const submitBtn = document.getElementById('submit-btn');
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    statusMessage.innerHTML = '';
+    
+    console.log('Attempting to send email...');
+    
+    // Send email using EmailJS with better error handling
+    emailjs.sendForm('service_fh1y1vm', 'template_fnegoya', form)
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        statusMessage.innerHTML = '<div class="status-message success">✓ Message sent successfully!</div>';
+        form.reset();
+      }, function(error) {
+        console.log('FAILED...', error);
+        let errorMsg = 'Failed to send message. Please try again.';
+        
+        // More specific error messages
+        if (error.text && error.text.includes('Invalid template')) {
+          errorMsg = 'Template configuration error. Please check your Template ID.';
+        } else if (error.text && error.text.includes('Invalid service')) {
+          errorMsg = 'Service configuration error. Please check your Service ID.';
+        } else if (error.text && error.text.includes('Public key')) {
+          errorMsg = 'Authentication error. Please check your Public Key.';
+        }
+        
+        statusMessage.innerHTML = `<div class="status-message error">✗ ${errorMsg}</div>`;
+      })
+      .finally(function() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+      });
+  }
+  
+  window.onload = function() {
+    document.getElementById('contact-form').addEventListener('submit', sendEmail);
+  };
+</script>
+<style>
+  /* Base Styles */
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  :root {
+      --primary-bg: #0a0a0a;
+      --secondary-bg: #111111;
+      --accent-red: #e50914;
+      --accent-red-dark: #b00710;
+      --text-primary: #ffffff;
+      --text-secondary: #aaaaaa;
+  }
+
+  body {
+      background-color: var(--primary-bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+  }
+
+  /* Header Styles */
+  header {
+      background: linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0) 100%);
+      padding: 20px 40px;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .auth-buttons .auth-btn {
+      background-color: transparent;
+      border: 1px solid var(--accent-red);
+      color: var(--text-primary);
+      padding: 8px 20px;
+      margin-left: 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+      text-shadow: 0 0 5px rgba(229, 9, 20, 0.5);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .auth-buttons .auth-btn:hover {
+      background-color: var(--accent-red);
+      color: var(--text-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+  }
+
+  .logo {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--accent-red);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+  }
+
+  .logo span {
+      color: var(--text-primary);
+  }
+
+  nav ul {
+      display: flex;
+      list-style: none;
+  }
+
+  nav ul li {
+      margin-left: 30px;
+  }
+
+  nav ul li a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: color 0.3s;
+      position: relative;
+  }
+
+  nav ul li a:hover {
+      color: var(--accent-red);
+  }
+
+  nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent-red);
+      transition: width 0.3s;
+  }
+
+  nav ul li a:hover::after {
+      width: 100%;
+  }
+
+  .mobile-menu {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+  }
+
+  /* Page Container */
+  .page-container {
+      max-width: 900px;
+      margin: 120px auto 40px;
+      padding: 40px;
+      background-color: var(--secondary-bg);
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+  }
+
+  .page-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, var(--accent-red), #ff4757);
+  }
+
+  h1 {
+      color: var(--text-primary);
+      margin-bottom: 20px;
+      font-size: 36px;
+      position: relative;
+      padding-bottom: 15px;
+  }
+
+  h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background-color: var(--accent-red);
+  }
+
+  h2 {
+      color: var(--accent-red);
+      margin: 40px 0 20px;
+      font-size: 24px;
+  }
+
+  p {
+      margin-bottom: 20px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+  }
+
+  ul {
+      list-style: none;
+      margin-bottom: 30px;
+  }
+
+  ul li {
+      margin-bottom: 10px;
+      padding-left: 20px;
+      position: relative;
+  }
+
+  ul li::before {
+      content: '•';
+      color: var(--accent-red);
+      position: absolute;
+      left: 0;
+      font-size: 18px;
+  }
+
+  /* Contact Form */
+  #contact-form {
+      margin-top: 30px;
+  }
+
+  .form-group {
+      margin-bottom: 25px;
+  }
+
+  label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-primary);
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #333;
+      border-radius: 6px;
+      background-color: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      font-size: 16px;
+      transition: all 0.3s;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus {
+      border-color: var(--accent-red);
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.2);
+  }
+
+  textarea {
+      resize: vertical;
+      min-height: 150px;
+  }
+
+  .btn {
+      background-color: var(--accent-red);
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+  }
+
+  .btn:hover {
+      background-color: var(--accent-red-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+  }
+
+  .btn:hover::before {
+      left: 100%;
+  }
+
+  .btn:disabled {
+      background-color: #555;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+  }
+
+  .btn:disabled:hover::before {
+      left: -100%;
+  }
+
+  /* Status Messages */
+  .status-message {
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: 600;
+  }
+
+  .success {
+      background-color: rgba(34, 197, 94, 0.1);
+      color: #22c55e;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+  }
+
+  .error {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+  }
+
+  /* EmailJS Credit */
+  .emailjs-credit {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-secondary);
+      font-size: 14px;
+  }
+
+  .emailjs-credit a {
+      color: var(--accent-red);
+      text-decoration: none;
+      transition: color 0.3s;
+  }
+
+  .emailjs-credit a:hover {
+      color: #ff4757;
+      text-decoration: underline;
+  }
+
+  /* Footer */
+  footer {
+      background-color: var(--primary-bg);
+      padding: 40px 20px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 60px;
+  }
+
+  .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  .footer-column h3 {
+      color: var(--accent-red);
+      font-size: 18px;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+  }
+
+  .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--accent-red);
+  }
+
+  .footer-column ul {
+      list-style: none;
+  }
+
+  .footer-column ul li {
+      margin-bottom: 10px;
+  }
+
+  .footer-column ul li a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+  }
+
+  .footer-column ul li a:hover {
+      color: var(--accent-red);
+  }
+
+  .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-secondary);
+      font-size: 14px;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+      header {
+          padding: 15px 20px;
+      }
+      
+      nav ul {
+          display: none;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          width: 100%;
+          background-color: var(--primary-bg);
+          flex-direction: column;
+          padding: 20px;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+      }
+      
+      nav ul li {
+          margin: 10px 0;
+      }
+      
+      .mobile-menu {
+          display: block;
+      }
+      
+      .auth-buttons {
+          display: none;
+      }
+      
+      .page-container {
+          margin: 100px 20px 40px;
+          padding: 30px 20px;
+      }
+      
+      h1 {
+          font-size: 28px;
+      }
+      
+      h2 {
+          font-size: 22px;
+      }
+  }
+</style>
+</head>
+<body>
+<header>
+    <div class="logo">Blood<span>Vine</span></div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="auth-buttons">
+        <button class="auth-btn">Login</button>
+        <button class="auth-btn">Sign Up</button>
+    </div>
+    <div class="mobile-menu">☰</div>
+</header>
+
+<div class="page-container">
+    <h1>Contact Us</h1>
+    <p>If you have questions or feedback about BloodVine, please reach out to us. We're here to help!</p>
+    
+    <ul>
+        <li>Email: lukew296@proton.me</li>
+        <li>Response Time: Within 24 hours</li>
+        <li>Support: Technical issues, account questions, content suggestions</li>
+    </ul>
+    
+    <h2>Send us a message</h2>
+    
+    <!-- Status message container -->
+    <div id="status-message"></div>
+    
+    <form id="contact-form">
+        <div class="form-group">
+            <label for="user_name">Name:</label>
+            <input type="text" id="user_name" name="user_name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="user_email">Email:</label>
+            <input type="email" id="user_email" name="user_email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+        </div>
+        
+        <button type="submit" id="submit-btn" class="btn">Send Message</button>
+    </form>
+    
+    <div class="emailjs-credit">
+        <p>Powered by <a href="https://www.emailjs.com" target="_blank">EmailJS</a></p>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>BloodVine</h3>
+            <ul>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="press.html">Press</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Help</h3>
+            <ul>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Legal</h3>
+            <ul>
+                <li><a href="tos.html">Terms of Service</a></li>
+                <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                <li><a href="cookies.html">Cookie Policy</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        &copy; 2024 BloodVine. All rights reserved.
+    </div>
+</footer>
+</body>
+</html>
