@@ -685,7 +685,10 @@
                     return;
                 }
 
-                // Remove all messages
+                // Clear the displayed messages immediately for snappier UI
+                clearDisplayedMessages();
+
+                // Remove all messages from the database
                 database.ref('messages').remove()
                     .then(() => {
                         displaySystemMessage('Chat has been cleared by ' + (user.displayName || user.email || 'an admin') + '.');
@@ -693,6 +696,8 @@
                     })
                     .catch(error => {
                         console.error('Error clearing chat:', error);
+                        // Inform the user; displayed messages are already cleared locally.
+                        displaySystemMessage('Failed to clear chat on the server. Messages may reappear.');
                         alert('Failed to clear chat. Please try again.');
                     });
 
@@ -733,6 +738,21 @@
             `;
             
             chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Remove displayed messages from the chat container while keeping the auth prompt (if present)
+        function clearDisplayedMessages() {
+            const authReq = document.getElementById('authRequired');
+            // Remove all children except the authRequired element
+            Array.from(chatMessages.children).forEach(child => {
+                if (authReq && child === authReq) return;
+                chatMessages.removeChild(child);
+            });
+            // Ensure the authRequired prompt is visible to unauthenticated users
+            if (authReq && authReq.parentElement !== chatMessages) {
+                chatMessages.appendChild(authReq);
+            }
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
         
