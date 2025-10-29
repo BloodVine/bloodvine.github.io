@@ -447,6 +447,14 @@
         // Get references to Firebase services
         const auth = firebase.auth();
         const database = firebase.database();
+        // Admin configuration: update these with admin emails or UIDs who are allowed to run /clear
+        // You can add owner emails here, or populate ADMIN_UIDS with specific user IDs.
+        const ADMIN_EMAILS = [
+            'lukew296@proton.me'
+        ];
+        const ADMIN_UIDS = [
+            'CanonSsundee96'
+        ];
 
         // Listen for when Firebase messages are cleared
         database.ref('messages').on('value', (snapshot) => {
@@ -659,26 +667,54 @@
         function sendMessage() {
             const message = messageInput.value.trim();
             if (message === '') return;
-            
+
             const user = auth.currentUser;
-            if (user) {
-                const messageData = {
-                    text: message,
-                    username: user.displayName || user.email.split('@')[0],
-                    userId: user.uid,
-                    timestamp: firebase.database.ServerValue.TIMESTAMP
-                };
-                
-                // Push message to Firebase
-                database.ref('messages').push(messageData)
+            if (!user) return;
+
+            // Special command: /clear — clear all messages from the database
+            if (message === '/clear') {
+                const isAdmin = (user.email && ADMIN_EMAILS.includes(user.email)) || (user.uid && ADMIN_UIDS.includes(user.uid));
+                if (!isAdmin) {
+                    displaySystemMessage('You do not have permission to clear the chat.');
+                    messageInput.value = '';
+                    return;
+                }
+
+                if (!confirm('Are you sure you want to clear the chat? This will permanently delete all messages.')) {
+                    messageInput.value = '';
+                    return;
+                }
+
+                // Remove all messages
+                database.ref('messages').remove()
                     .then(() => {
+                        displaySystemMessage('Chat has been cleared by ' + (user.displayName || user.email || 'an admin') + '.');
                         messageInput.value = '';
                     })
                     .catch(error => {
-                        console.error('Error sending message:', error);
-                        alert('Failed to send message. Please try again.');
+                        console.error('Error clearing chat:', error);
+                        alert('Failed to clear chat. Please try again.');
                     });
+
+                return;
             }
+
+            const messageData = {
+                text: message,
+                username: user.displayName || (user.email ? user.email.split('@')[0] : 'Anonymous'),
+                userId: user.uid,
+                timestamp: firebase.database.ServerValue.TIMESTAMP
+            };
+
+            // Push normal message to Firebase
+            database.ref('messages').push(messageData)
+                .then(() => {
+                    messageInput.value = '';
+                })
+                .catch(error => {
+                    console.error('Error sending message:', error);
+                    alert('Failed to send message. Please try again.');
+                });
         }
 
         function displaySystemMessage(text) {
