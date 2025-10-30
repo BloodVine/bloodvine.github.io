@@ -626,18 +626,37 @@ footer a:hover {
     position: relative;
     width: 40%;
     overflow: hidden;
+    /* center the image and give a fixed height so images of different ratios fit nicely */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.15);
+    padding: 12px;
+    height: 260px;
 }
 
 .product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    /* show image zoomed out (fit inside the area) */
+    width: 75%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
     display: block;
-    transition: transform 0.5s;
+    transition: transform 0.35s ease, opacity 0.25s ease;
+}
+
+/* Utility image size classes for per-product control */
+.product-image img.img-small {
+    width: 60%;
+}
+
+.product-image img.img-large {
+    width: 95%;
 }
 
 .product-card:hover .product-image img {
-    transform: scale(1.05);
+    /* subtle hover zoom-in when hovering the card */
+    transform: scale(1.03);
 }
 
 .stock-badge {
