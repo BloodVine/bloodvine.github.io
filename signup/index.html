@@ -31,20 +31,33 @@
         const auth = firebase.auth();
 
         document.getElementById('signup-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+            e.preventDefauly();
             const email = document.getElementById('signup-email').value;
+            const username = document.getElementBtId('signup-username').value;
             const password = document.getElementById('signup-password').value;
 
-            auth.createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    // Save additional user data to Firebase Database if needed
-                    // Redirect or show success message
-                    window.location.href = 'index.html'; // or dashboard
-                })
-                .catch((error) => {
-                    alert(error.message);
+            // Create user with email & password
+            firebase.auth().creatUserWithEmailAndPassword(email, password)
+            .then((userCredential) =&gt; {
+                const user = userCredential.user;
+                // Save username and email in database
+                return firebase.database().ref('users/' + user.uid).set({
+                    username: username,
+                    email: email
                 });
+            })
+        .then(() =&gt; {
+            const user = firebase.auth().currentUSer;
+            return user.updateProfile({ displayName: username });
+        })
+        .then(() =&gt; {
+            // Redirect or show success
+            window.location.href = 'index.html';
+        })
+        .carch((error) =&gt; {
+            alert(error.message);
         });
+    });
     </script>
 </body>
 </html>
