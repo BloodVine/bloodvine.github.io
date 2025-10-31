@@ -1,63 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Sign Up - BloodVine</title>
-    <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sign Up - BloodVine</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <form class="auth-form" id="signup-form">
-        <h2>Sign Up</h2>
-        <input type="email" id="signup-email" placeholder="Email" required />
-        <input type="password" id="signup-password" placeholder="Password" required />
-        <button type="submit">Sign Up</button>
-        <a class="back-link" href="index.html">Back to Home</a>
-    </form>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-    <script>
-        // Your Firebase config
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-        firebase.initializeApp(firebaseConfig);
+<form class="auth-form" id="signup-form">
+  <h2>Sign Up</h2>
+  <input type="email" id="signup-email" placeholder="Email" required />
+  <input type="text" id="signup-username" placeholder="Username" required />
+  <input type="password" id="signup-password" placeholder="Password" required />
+  <button type="submit">Sign Up</button>
+  <a class="back-link" href="index.html">Back to Home</a>
+</form>
 
-        const auth = firebase.auth();
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
-        document.getElementById('signup-form').addEventListener('submit', function(e) {
-            e.preventDefauly();
-            const email = document.getElementById('signup-email').value;
-            const username = document.getElementBtId('signup-username').value;
-            const password = document.getElementById('signup-password').value;
+<script>
+  // Your Firebase config - replace with your actual Firebase project config
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    databaseURL: "YOUR_DATABASE_URL",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+  firebase.initializeApp(firebaseConfig);
 
-            // Create user with email & password
-            firebase.auth().creatUserWithEmailAndPassword(email, password)
-            .then((userCredential) =&gt; {
-                const user = userCredential.user;
-                // Save username and email in database
-                return firebase.database().ref('users/' + user.uid).set({
-                    username: username,
-                    email: email
-                });
-            })
-        .then(() =&gt; {
-            const user = firebase.auth().currentUSer;
-            return user.updateProfile({ displayName: username });
-        })
-        .then(() =&gt; {
-            // Redirect or show success
-            window.location.href = 'index.html';
-        })
-        .carch((error) =&gt; {
-            alert(error.message);
+  const auth = firebase.auth();
+  const database = firebase.database();
+
+  document.getElementById('signup-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('signup-email').value;
+    const username = document.getElementById('signup-username').value;
+    const password = document.getElementById('signup-password').value;
+
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        // Save additional profile info
+        return user.updateProfile({ displayName: username });
+      })
+      .then(() => {
+        const user = auth.currentUser;
+        // Save username & email in database under user UID
+        return database.ref('users/' + user.uid).set({
+          username: username,
+          email: email
         });
-    });
-    </script>
+      })
+      .then(() => {
+        // Redirect after successful signup
+        window.location.href = 'index.html';
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  });
+</script>
 </body>
 </html>
